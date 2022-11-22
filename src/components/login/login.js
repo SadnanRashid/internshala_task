@@ -1,18 +1,19 @@
 import "./login.css";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [text, setText] = useState("");
-  // const [loggedInText, setLoggedInText] = useState(
-  //   `Logged in with ${localStorage.getItem("user")}`
-  // );
+  // For navigate after login
+  const navigate = useNavigate();
+  //
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
 
+    // https://server-side-task.vercel.app/check-user
     fetch(`https://server-side-task.vercel.app/check-user`, {
       method: "POST",
       headers: {
@@ -25,9 +26,12 @@ export default function Login() {
         if (data.name === false) {
           setText("User not found!");
         } else {
+          console.log(data);
           setText("Logged in. User Found!");
           localStorage.setItem("user", data.name);
+          localStorage.setItem("token", data.token);
           form.reset();
+          navigate("/user-page");
         }
       });
   };
