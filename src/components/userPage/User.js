@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function User() {
-  const [loggedInText, setLoggedInText] = useState("Not logged in");
+  const [loggedInText, setLoggedInText] = useState("");
   const [userData, setUserData] = useState([]);
   let index = 0;
   // verify user and load data
@@ -19,6 +19,8 @@ export default function User() {
             setLoggedInText(
               `Logged in with user's name: ${localStorage.getItem("user")}`
             );
+          } else {
+            setLoggedInText("Not logged in");
           }
         })
         .catch((e) => console.log(e));

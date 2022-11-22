@@ -37,11 +37,6 @@ export default function Login() {
   };
   return (
     <div>
-      <div className="text-center mt-5">
-        <Link to="/user-page">
-          <p className="btn btn-dark">User Page</p>
-        </Link>
-      </div>
       <section className="login-margin">
         <div className="container-fluid h-custom">
           <div className="row d-flex justify-content-center align-items-center h-100">
